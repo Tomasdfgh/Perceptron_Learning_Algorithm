@@ -40,3 +40,27 @@ The dataset created from the testing_for_perceptron.py can be viewed below
 This dataset contains 150 data points, each with a dimension of 2. The weight vector seen in this photo is the correct weight vector and now the PLA will attempt to converge to the most accurate weight vector.
 
 ![2d_result_gif](https://user-images.githubusercontent.com/86145397/210062026-21ddd8d9-d9e8-455b-a6d7-e516b91388e8.gif)
+
+As seen in this GIF, the weight vector is slowly converging to the correct solution over the 5 epochs. The accuracy result of this example is given below
+
+![image](https://user-images.githubusercontent.com/86145397/210062385-6f485459-1692-40eb-b1c3-7bebf1215c5e.png)
+
+where the model has an overall accuracy of 96.67 percent.
+
+### 3D Trial
+
+The dataset created from the testing_for_perceptron.py can be viewed below
+
+![3D_CorrectSolution](https://user-images.githubusercontent.com/86145397/210062492-11d58d6f-e2d5-45b8-828e-23037b8795a8.png)
+
+Ofcourse, having 3 dimensions, the weight vector now exists as a plane and each data point also exists on a 3D plane. This data set also contains 150 points, each with a dimension of 3. The weight plane is the correct weight plane and now the PLA will attempt to converge to the most accurate weight plane.
+
+![3d_result_gif](https://user-images.githubusercontent.com/86145397/210062666-b738b137-2a82-45b4-8e45-6f235e5e9ac5.gif)
+
+As seen in this GIF, the weight plane is slowly converging to the correct solution over the 5 epochs. After 5 epochs, the accuracy of this example can be seen below
+
+![image](https://user-images.githubusercontent.com/86145397/210062911-474ecd65-becf-4fbb-99d3-5d4d7b2df82b.png)
+
+This model has a testing accuracy of 93.33 percent.
+
+
