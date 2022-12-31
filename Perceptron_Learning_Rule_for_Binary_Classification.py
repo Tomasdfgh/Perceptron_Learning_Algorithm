@@ -140,3 +140,4 @@ def Perceptron_Algorithm(data,epoch,lr):
 			correct += 1
 	print("Model has a testing accuracy of " + str(float(correct/total)*100) + "%")
 	plt.show()
+	return w
