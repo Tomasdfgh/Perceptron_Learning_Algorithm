@@ -27,7 +27,7 @@ def make_up_data(num,dim):
 		tester = []
 		target = 0
 		for z in range(dim):
-			elem = random.randint(-100,100)
+			elem = random.randint(-num*1.5,num*1.5)
 			temp.append(elem)
 			temp_2.append(elem)
 		target = dot(temp,w)
@@ -69,12 +69,12 @@ def make_up_data(num,dim):
 				data_z_f.append(data[i][0][3])
 
 	if len(data[0][0]) == 3:
-		x = np.linspace(-100,100,100)
+		x = np.linspace(-num * 4/3,num *4/3,100)
 		y = -(w[1]/w[2])*x - (w[0]/w[2])
 		plt.plot(x,y,"--g",data_x_t,data_y_t,"xb",data_x_f,data_y_f,"or")
 
 	if len(data[0][0]) == 4:
-		xx, yy = np.meshgrid(range(-100,100), range(-100,100))
+		xx, yy = np.meshgrid(range(int(-num *4/3),int(num*4/3)), range(int(-num*4/3),int(num*4/3)))
 		z = -(w[2]/w[3])*yy - (w[1]/w[3])*xx - (w[0]/w[3])
 		fig = plt.figure(figsize = (7,7))
 		ax = fig.add_subplot(111,projection = '3d')
@@ -87,5 +87,6 @@ def make_up_data(num,dim):
 	return data_actual
 
 if __name__ == '__main__':
-	data = make_up_data(150,3)
-	Perceptron_Algorithm(data,5,0.1)
+	data = make_up_data(150,2)
+	w = Perceptron_Algorithm(data,5,0.01)
+	print(w)
