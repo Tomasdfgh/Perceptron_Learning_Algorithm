@@ -35,8 +35,18 @@ def data_adaptation(data):
 		if temp_2 > max_:
 			max_ = temp_2
 		data[i][0] = l
-	data_trial = data[:int(0.8*len(data))]
-	data_test = data[int(0.8*len(data)):]
+
+	#Randomly allocating data into training set and test set
+	
+	data_trial = []
+	data_test = []
+	length_data = len(data)
+	n = len(data)
+	while len(data_trial) < 0.8 * length_data:
+		data_trial.append(data.pop(int(random.uniform(0,n))))
+		n -= 1
+	data_test = data
+
 	return data_trial,data_test,min_,max_
 
 def Perceptron_Algorithm(data,epoch,lr):
@@ -53,29 +63,27 @@ def Perceptron_Algorithm(data,epoch,lr):
 	data_z_f = []
 
 	#---------Graphing for 2D Models---------#
-
 	if len(data[0][0]) == 3:
-		for i in range(len(data)):
-			if data[i][1] == 1:
-				data_x_t.append(data[i][0][1])
-				data_y_t.append(data[i][0][2])
-			if data[i][1] == -1:
-				data_x_f.append(data[i][0][1])
-				data_y_f.append(data[i][0][2])
+		for i in range(len(data_trial)):
+			if data_trial[i][1] == 1:
+				data_x_t.append(data_trial[i][0][1])
+				data_y_t.append(data_trial[i][0][2])
+			if data_trial[i][1] == -1:
+				data_x_f.append(data_trial[i][0][1])
+				data_y_f.append(data_trial[i][0][2])
 
 	#---------Graphing for 3D Models---------#
 
 	if len(data[0][0]) == 4:
-		for i in range(len(data)):
-			if data[i][1] == 1:
-				data_x_t.append(data[i][0][1])
-				data_y_t.append(data[i][0][2])
-				data_z_t.append(data[i][0][3])
-			if data[i][1] == -1:
-				data_x_f.append(data[i][0][1])
-				data_y_f.append(data[i][0][2])
-				data_z_f.append(data[i][0][3])
-
+		for i in range(len(data_trial)):
+			if data_trial[i][1] == 1:
+				data_x_t.append(data_trial[i][0][1])
+				data_y_t.append(data_trial[i][0][2])
+				data_z_t.append(data_trial[i][0][3])
+			if data_trial[i][1] == -1:
+				data_x_f.append(data_trial[i][0][1])
+				data_y_f.append(data_trial[i][0][2])
+				data_z_f.append(data_trial[i][0][3])
 	#---------End of Graphing---------#
 
 	print("________________Training Begins________________")
@@ -97,11 +105,10 @@ def Perceptron_Algorithm(data,epoch,lr):
 				plt.title("Binary Classification Using Perceptron Learning Rule")
 				plt.ylabel("x_2")
 				plt.xlabel("x_1")
-				plt.pause(0.0000001)
+				plt.pause(0.000000001)
 			#---------3D Graphing---------#
 			if len(data_iter[0]) == 4:
-				#plt.cla()
-				xx, yy = np.meshgrid(range(-100,100), range(-100,100))
+				xx, yy = np.meshgrid(range(int(min_)-3,int(max_)+3), range(int(min_)-3,int(max_)+3))
 				z = -(w[2]/w[3])*yy - (w[1]/w[3])*xx - (w[0]/w[3])
 				if count == False:
 					fig = plt.figure(figsize = (8,8))
@@ -110,7 +117,7 @@ def Perceptron_Algorithm(data,epoch,lr):
 				ax.scatter(data_x_f,data_y_f,data_z_f,marker = "x",c = "b")
 				ax.scatter(data_x_t,data_y_t,data_z_t,marker = "o", c = "r")
 				ax.plot_surface(xx, yy, z,alpha = 0.5)
-				plt.pause(0.0000001)
+				plt.pause(0.000000001)
 				count = True	
 
 
